@@ -48,6 +48,7 @@ Original screenshots live in `public/memories/`. Replace a file with an image of
 | `06-ketchup.jpg` | 19 | Ketchup exchange |
 | `07-first-photo-of-you.jpeg` | 20 | His first clear photograph |
 | `08-first-photo-of-me.jpeg` | 20 | Her first photograph |
+| `09-the-family-i-imagine.jpeg` | 25 | Illustration of the imagined future family |
 
 Six chat screenshots were supplied, although the original brief mentioned seven. Two later-supplied portraits are preserved as a paired keepsake interlude after section 20; edit firstPhotographs in src/data/book.ts to update them. The desktop paginator keeps the portraits together on facing pages; phones show one at a time. No seventh screenshot or replacement conversation was invented. To add another, put the original in this folder and add one mapping entry. Images retain their original proportions and wording. In the Instagram screenshot, the left bubbles are hers and the right bubbles are his.
 
@@ -92,4 +93,5 @@ Neither guide implies that free hosting includes private access. Check provider 
 - Phone-sized Chromium testing is not a physical iPhone Safari test. Test touch swipes and audio on the receiving phone before gifting; if its browser has trouble with animated pages, use Plain pages.
 
 The page-turn library is deliberately pinned by `package-lock.json`. Keep the lockfile for reproducible installs. The optional `.openai/hosting.json` is used by Sites hosting and is not needed by Vercel or Netlify.
+
 

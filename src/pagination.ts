@@ -40,7 +40,7 @@ export function paginate(width: number, height: number, spread = false): Leaf[] 
         pages.push({ kind: 'story', key: `s${section.id}-${offset}`, section: section.id, title: section.title, part: section.part, text: words.slice(offset, offset + count).join(' '), continued, offset });
         offset += count;
       }
-      for (const memory of memories.filter(m => m.section === section.id)) pages.push({ kind: 'memory', key: memory.src, section: section.id, memory });
+      for (const memory of memories.filter(m => m.section === section.id)) pages.push({ kind: memory.heading ? 'portrait' : 'memory', key: memory.src, section: section.id, memory });
       if (section.id === 20) {
         // Keep his and her portraits facing each other in a desktop spread.
         if (spread && pages.length % 2) pages.push({ kind: 'portrait-intro', key: 'first-photographs', section: 20 });
