@@ -34,6 +34,8 @@ Page-turn sounds and quiet reading music start enabled after the Open Our Story 
 
 `src/pagination.ts` measures the actual HTML typography at the current page dimensions and splits paragraphs at word boundaries, preferring sentence endings. Continuations preserve every word. Resizing regenerates the physical pages and keeps a nearby logical reading position. Physical page counts vary by screen size; there are always 26 story sections.
 
+Later author-requested passages are in `src/data/author-additions.json` and woven into the existing chapter text by `src/data/book.ts`. Chapter 25 includes the imagined children, his wish for two and hers for four, and their chosen names Zidan and Zayna. The original PDF import remains intact; verification also checks that each addition has an unambiguous insertion point.
+
 Original screenshots live in `public/memories/`. Replace a file with an image of the same filename, or edit the mapping in `src/data/book.ts` (path, caption, accessible description, and section number):
 
 | File | After section | Memory |

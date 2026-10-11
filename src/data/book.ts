@@ -1,5 +1,13 @@
 import manuscript from './manuscript.json';
-export const sections = manuscript;
+import additions from './author-additions.json';
+// Later author-requested passages live within the existing chapters while the
+// imported PDF text stays intact for word-for-word source verification.
+export const sections = manuscript.map(section => ({
+  ...section,
+  paragraphs: section.paragraphs.map(paragraph => additions
+    .filter(addition => addition.section === section.id)
+    .reduce((text, addition) => text.replace(addition.after, `${addition.after} ${addition.text}`), paragraph)),
+}));
 export type Memory = { src: string; caption: string; alt: string; section: number; heading?: string; note?: string };
 // Add an original screenshot here to insert another archival page after a section.
 export const memories: Memory[] = [
