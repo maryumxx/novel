@@ -1,6 +1,6 @@
 # The Night Before You
 
-A private anniversary book for October 11, 2025–October 11, 2026. Vite + React + TypeScript, react-pageflip/StPageFlip, locally bundled fonts, and Web Audio paper sounds. No analytics, backend, music, or remote font requests.
+A private anniversary book for October 11, 2025–October 11, 2026. Vite + React + TypeScript, react-pageflip/StPageFlip, locally bundled fonts, and Web Audio paper sounds. No analytics, backend, or remote font requests. The original reading soundtrack is bundled locally.
 
 ## Run locally
 
@@ -26,7 +26,7 @@ The completed production files are in `dist/`. Serve that folder through HTTP; o
 
 Open Our Story animates the hardcover. Desktops show two pages; phones show one. Use Previous/Next, keyboard arrows, a mouse drag from a page corner, or a horizontal touch swipe. Vertical scrolling remains available. Contents jumps to any chapter or the finale. Click an original screenshot to enlarge it; Escape, the close button, or the backdrop closes the lightbox. The final page returns to the cover and resets the reading position.
 
-Sound starts muted. Enable it with Sound off; a soft locally generated paper noise plays when pages change. There is no autoplay music. Plain pages disables the flip library; the system reduced-motion preference selects this mode automatically. Only the reading position and sound preference use localStorage. Storage failures do not prevent reading.
+Page-turn sounds and quiet reading music start enabled after the Open Our Story gesture. Use Pages and Music to mute them independently; preferences are remembered. The original 64-second instrumental loops continuously through chapters and photo viewing, pauses on returning to the cover or hiding the tab, and resumes when reading resumes. No audio plays before opening. The music is mixed at 8.5% through a Web Audio gain so it stays quiet on mobile. Its source is public/audio/our-quiet-pages.wav; scripts/create-reading-music.py can recreate it with Python and numpy. The page rustle is synthesized locally in src/pageSound.ts. Plain pages disables the flip library; the system reduced-motion preference selects this mode automatically. Only the reading position and sound preference use localStorage. Storage failures do not prevent reading.
 
 ## Manuscript and images
 
@@ -44,8 +44,10 @@ Original screenshots live in `public/memories/`. Replace a file with an image of
 | `04-pakistan.jpg` | 8 | Pakistan conversation |
 | `05-delhi.jpg` | 8 | Delhi invitation |
 | `06-ketchup.jpg` | 19 | Ketchup exchange |
+| `07-first-photo-of-you.jpeg` | 20 | His first clear photograph |
+| `08-first-photo-of-me.jpeg` | 20 | Her first photograph |
 
-Six screenshots were supplied, although the brief mentioned seven. No seventh screenshot or replacement conversation was invented. To add another, put the original in this folder and add one mapping entry. Images retain their original proportions and wording. In the Instagram screenshot, the left bubbles are hers and the right bubbles are his.
+Six chat screenshots were supplied, although the original brief mentioned seven. Two later-supplied portraits are preserved as a paired keepsake interlude after section 20; edit firstPhotographs in src/data/book.ts to update them. The desktop paginator keeps the portraits together on facing pages; phones show one at a time. No seventh screenshot or replacement conversation was invented. To add another, put the original in this folder and add one mapping entry. Images retain their original proportions and wording. In the Instagram screenshot, the left bubbles are hers and the right bubbles are his.
 
 The original import can be repeated, if needed, using Python with `pypdf`:
 
@@ -88,3 +90,4 @@ Neither guide implies that free hosting includes private access. Check provider 
 - Phone-sized Chromium testing is not a physical iPhone Safari test. Test touch swipes and audio on the receiving phone before gifting; if its browser has trouble with animated pages, use Plain pages.
 
 The page-turn library is deliberately pinned by `package-lock.json`. Keep the lockfile for reproducible installs. The optional `.openai/hosting.json` is used by Sites hosting and is not needed by Vercel or Netlify.
+

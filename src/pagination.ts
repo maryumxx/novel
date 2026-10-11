@@ -1,6 +1,6 @@
-import { memories, sections } from './data/book';
+import { firstPhotographs, memories, sections } from './data/book';
 import type { Memory } from './data/book';
-export type Leaf = { kind: 'title' | 'dedication' | 'story' | 'memory' | 'endpaper' | 'final'; key: string; section?: number; title?: string; part?: string; text?: string; continued?: boolean; offset?: number; memory?: Memory };
+export type Leaf = { kind: 'title' | 'dedication' | 'story' | 'memory' | 'portrait' | 'portrait-intro' | 'endpaper' | 'final'; key: string; section?: number; title?: string; part?: string; text?: string; continued?: boolean; offset?: number; memory?: Memory };
 export function paginate(width: number, height: number, spread = false): Leaf[] {
   const pages: Leaf[] = [{ kind: 'title', key: 'title' }, { kind: 'dedication', key: 'dedication' }];
   const measure = document.createElement('div');
@@ -41,6 +41,11 @@ export function paginate(width: number, height: number, spread = false): Leaf[] 
         offset += count;
       }
       for (const memory of memories.filter(m => m.section === section.id)) pages.push({ kind: 'memory', key: memory.src, section: section.id, memory });
+      if (section.id === 20) {
+        // Keep his and her portraits facing each other in a desktop spread.
+        if (spread && pages.length % 2) pages.push({ kind: 'portrait-intro', key: 'first-photographs', section: 20 });
+        for (const memory of firstPhotographs) pages.push({ kind: 'portrait', key: memory.src, section: 20, memory });
+      }
     }
   } finally { measure.remove(); }
   if (spread && pages.length % 2 === 0) pages.push({ kind: 'endpaper', key: 'endpaper' });
